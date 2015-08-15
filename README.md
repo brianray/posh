@@ -1,2 +1,2 @@
 # posh
-POSH: Parts Of Speach Heuristics
+POSH: Parts Of Speech Heuristics
