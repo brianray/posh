@@ -1,0 +1,4 @@
+[submodule "external/citar"]
+	path = external/citar
+	url = https://github.com/brianray/citar.git
+	branch = posh

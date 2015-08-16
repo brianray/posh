@@ -92,3 +92,12 @@ target/
 
 # Debug files
 *.dSYM/
+
+# our stuff #######################################################
+
+
+data/*
+!data/data_place_holder.txt
+
+
+

@@ -1,5 +1,6 @@
 
 import posh.core as core
+from syntax import Syntax
 
 
 class Session(object):
@@ -16,7 +17,7 @@ class Session(object):
         Args:
             syntax (str): Should be a known `syntax` like 'wordnet'.
         """
-        self.syntax = syntax
+        self.syntax = Syntax(syntax)
         self.rules = {}
 
     def addRule(self, rule_handle, rule):
