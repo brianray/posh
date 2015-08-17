@@ -133,7 +133,7 @@ void writeNGrams(ostream &out,
 	}
 }
 
-int train_citar_main(char* corpus, char* lexicon, char* ngrams)
+int train_citar_main(const char* corpus, const char* lexicon, const char* ngrams)
 {
 
 	vector<TaggedWord> startTags(2, TaggedWord("<START>", "<START>"));

@@ -31,17 +31,10 @@ posh_prefligt_rule(char *rule) {
 
 bool
 posh_train(char *system, char *arg_list) {
-  
-
   std::vector<std::string> args = split(arg_list, ' ');
-  
-
-  int ret = train_citar_main("./data/brown-corpus", "lexicon", "ngrams");
-
-
+  int ret = train_citar_main(args[0].c_str(), args[1].c_str(), args[2].c_str());
   if (ret != -1)
      return true;
-
    return false;
 }
 

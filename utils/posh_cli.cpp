@@ -4,5 +4,5 @@
 
 
 int main(int argc, const char * argv[]) {
-    bool ret =  posh_train("citar", "/Users/rayb/src/posh/data/corpora/brown/brown_combined.txt lexicon ngrams");
+    bool ret =  posh_train("citar", "data/corpora/brown/brown_combined.txt lexicon ngrams");
 }

@@ -12,16 +12,17 @@ CODE_DIRECTORY = 'posh'
 DOCS_DIRECTORY = 'docs'
 TESTS_DIRECTORY = 'tests'
 PYTEST_FLAGS = ['--doctest-modules']
-EXTRA_COMPILER_ARGS = []
-
+EXTRA_COMPILER_ARGS = ["-std=c++11", ]
 
 if platform.system() == 'Darwin':
     # see http://stackoverflow.com/a/14229045/226800
     os.environ["CXX"] = "clang++"
     os.environ["CXX"] = "clang++"
-    EXTRA_COMPILER_ARGS += ["-std=c++11",
-                            "-stdlib=libc++",
+    EXTRA_COMPILER_ARGS += ["-stdlib=libc++",
                             "-mmacosx-version-min=10.7"]
+elif platform.system() == "Linux":
+    # CXXFLAGS=-c -g -Wall -std=c++11 {{INC}}
+    pass
 
 
 class test(_test):
@@ -225,7 +226,7 @@ class MakeFileCommand(Command):
 # rewquires bottle (pip install bottle)
 
 CXX={{CXX}}
-CXXFLAGS=-c -Wall -std=c++11 {{INC}}
+CXXFLAGS=-c -g -Wall -std=c++11 {{INC}}
 
 all: posh_cli
 
@@ -248,7 +249,7 @@ posh_cli: \\
 % end
 
 clean:
-\trm *o push_cli
+\trm push_cli
 \trm ./external/citar/include/citar/config.hh
 
 '''
