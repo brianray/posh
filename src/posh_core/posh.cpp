@@ -32,9 +32,10 @@ posh_prefligt_rule(char *rule) {
 bool
 posh_train(char *system, char *arg_list) {
   
+
+  std::vector<std::string> args = split(arg_list, ' ');
   
-  std::vector<std::string> args = split(arg_list, " ");
-  
+
   int ret = train_citar_main("./data/brown-corpus", "lexicon", "ngrams");
 
 

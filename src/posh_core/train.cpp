@@ -171,4 +171,5 @@ int train_citar_main(char* corpus, char* lexicon, char* ngrams)
 
 	writeNGrams(ngramStream, trainHandler->uniGrams(), trainHandler->biGrams(),
 		trainHandler->triGrams());
+    return -1;
 }

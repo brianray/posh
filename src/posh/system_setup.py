@@ -18,6 +18,7 @@ def load_nltk_data_files(nltk_corpus_name, data_path="./data"):
 
 
 def full_setup():
+
     data_path = join(".", "data")
     load_nltk_data_files("brown", data_path)
     brown_sub = join(data_path, "corpora", "brown")
