@@ -1,4 +1,3 @@
-
 #include "train.hh"
 #include "rule.hh"
 #include <string>
@@ -22,7 +21,7 @@ std::vector<std::string> split(const std::string &s, char delim) {
 }
 
 bool 
-posh_prefligt_rule(char *rule) {
+posh_preflight_rule(char *rule) {
     Rule *rule_obj = new Rule(rule);
     return rule_obj->check();
 }
