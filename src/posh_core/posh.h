@@ -2,7 +2,7 @@
 #ifndef POSH_H
 #define POSH_H
 
-char * 
+bool 
 posh_prefligt_rule(char *rule);
 
 bool 

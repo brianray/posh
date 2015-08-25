@@ -1,6 +1,6 @@
 import posh.core as core
 import nltk
-from os.path import join, exists
+from os.path import join, exists, sep
 import glob
 
 
@@ -9,21 +9,25 @@ def train(system, args):
     core.train(system, args)
 
 
-def load_nltk_data_files(nltk_corpus_name, data_path="./data"):
-    if not exists(data_path):
-        raise IOError("No path found {}".format(data_path))
-    if data_path not in nltk.data.path:
-        nltk.data.path.append(data_path)
-    nltk.download(nltk_corpus_name, download_dir=data_path, quiet=True)
+def load_nltk_data_files(nltk_corpus_name, dpath="./data"):
+    if not exists(dpath):
+        raise IOError("No path found {}".format(dpath))
+    if dpath not in nltk.data.path:
+        nltk.data.path.append(dpath)
+    nltk.download(nltk_corpus_name, download_dir=dpath, quiet=True)
 
 
-def full_setup():
-
-    data_path = join(".", "data")
-    load_nltk_data_files("brown", data_path)
-    brown_sub = join(data_path, "corpora", "brown")
-    brown_corpus = join(brown_sub, "brown_combined.txt")
-    f = open(brown_corpus, "wb")
+FULL_SETUP = False
+def full_setup(download=True):
+    global FULL_SETUP
+    if FULL_SETUP:
+        return
+    dpath = join(".", "data")
+    if download:
+        load_nltk_data_files("brown", dpath)
+    brown_sub = join(dpath, "corpora", "brown")
+    corpus = join(brown_sub, "brown_combined.txt")
+    f = open(corpus, "wb")
     path_pattern = join(brown_sub, "c*")
     for afile in glob.glob(path_pattern):
         for line in open(afile, 'rb'):
@@ -32,4 +36,7 @@ def full_setup():
                 continue
             f.write(line)
     f.close()
-    train("citer", "{} lexicon ngrams".format(brown_corpus))
+    osep = sep
+    arg_str = "{corpus} {dpath}{osep}lexicon {dpath}{osep}ngrams"
+    train("citer", arg_str.format(**locals()))
+    FULL_SETUP = True

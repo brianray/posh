@@ -22,6 +22,7 @@ ModelPrivate.o \
 KnownWordHandler.o \
 SuffixWordHandler.o \
 WordSuffixTree.o \
+rule.o \
 posh.o \
 train.o \
 
@@ -39,6 +40,7 @@ ModelPrivate.o \
 KnownWordHandler.o \
 SuffixWordHandler.o \
 WordSuffixTree.o \
+rule.o \
 posh.o \
 train.o \
  -o posh_cli
@@ -83,6 +85,9 @@ SuffixWordHandler.o: ./external/citar/src/tagger/wordhandler/SuffixWordHandler.c
 
 WordSuffixTree.o: ./external/citar/src/tagger/wordhandler/WordSuffixTree.cpp
 	$(CXX) $(CXXFLAGS) ./external/citar/src/tagger/wordhandler/WordSuffixTree.cpp
+
+rule.o: src/posh_core/rule.cpp
+	$(CXX) $(CXXFLAGS) src/posh_core/rule.cpp
 
 posh.o: src/posh_core/posh.cpp
 	$(CXX) $(CXXFLAGS) src/posh_core/posh.cpp

@@ -1,5 +1,6 @@
 
 #include "train.hh"
+#include "rule.hh"
 #include <string>
 #include <sstream>
 #include <vector>
@@ -20,14 +21,11 @@ std::vector<std::string> split(const std::string &s, char delim) {
     return elems;
 }
 
-char * 
+bool 
 posh_prefligt_rule(char *rule) {
-
- char *out = "no";
- return out;
-
+    Rule *rule_obj = new Rule(rule);
+    return rule_obj->check();
 }
-
 
 bool
 posh_train(char *system, char *arg_list) {

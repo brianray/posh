@@ -175,6 +175,7 @@ citar_sources = """./external/citar/src/corpus/BrownCorpusReader.cpp
 ./external/citar/src/tagger/wordhandler/WordSuffixTree.cpp""".split("\n")
 
 posh_sources = """src/posh_core/posh_python_extension.cpp
+src/posh_core/rule.cpp
 src/posh_core/posh.cpp
 src/posh_core/train.cpp""".split("\n")
 
@@ -282,6 +283,7 @@ setup(name='posh',
       cmdclass={'test': TestAllCommand,
                 'makefile': MakeFileCommand},
       tests_require=[
+        'setuptools==18.1',
         'pytest==2.5.1',
         'mock==1.3.0',
         'flake8==2.1.0'])
