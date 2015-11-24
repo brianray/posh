@@ -55,3 +55,18 @@ For the 'posh.core' extension:
 python setup.py build 
 ```
 
+environment (add to .bashrc):
+
+```bash
+export PYTHONPATH="./src:$PYTHONPATH"
+```
+
+
+## Setup/Tutorial
+
+For quickstart:
+
+```bash
+ipython notebook notebooks/Tutorial.ipynb
+```
+ref [Tutorial](notebooks/Tutorial.ipynb)
