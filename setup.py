@@ -14,10 +14,18 @@ TESTS_DIRECTORY = 'tests'
 PYTEST_FLAGS = ['--doctest-modules']
 EXTRA_COMPILER_ARGS = ["-std=c++11", ]
 
+
+def check_call(args):
+    try:
+        subprocess.check_call(args)
+        return True
+    except Exception, e:
+        print e
+    return False
+
 if platform.system() == 'Darwin':
-    # see http://stackoverflow.com/a/14229045/226800
-    os.environ["CXX"] = "clang++"
-    os.environ["CXX"] = "clang++"
+    if check_call(['clang++', '--version']):
+        os.environ["CXX"] = "clang++"
     EXTRA_COMPILER_ARGS += ["-stdlib=libc++",
                             "-mmacosx-version-min=10.7"]
 elif platform.system() == "Linux":
@@ -250,7 +258,7 @@ posh_cli: \\
 % end
 
 clean:
-\trm push_cli
+\trm posh_cli
 \trm ./external/citar/include/citar/config.hh
 
 '''
