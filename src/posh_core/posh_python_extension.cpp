@@ -14,7 +14,7 @@ preflight_rule(PyObject *self, PyObject *args)
    if (!PyArg_ParseTuple(args, "s", &rule)) {
       return NULL;
    }
-   return Py_BuildValue("b", posh_prefligt_rule(rule));
+   return Py_BuildValue("b", posh_preflight_rule(rule));
 }
 
 static PyObject *
