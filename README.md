@@ -1,7 +1,7 @@
 # posh
 POSH: Parts Of Speech Heuristics
 
-Build complex parts of speech rules with (Posh Syntax)[https://github.com/brianray/posh-syntax] with support of Taxonomy and Ontologies. 
+Build complex parts of speech rules with [Posh Syntax](https://github.com/brianray/posh-syntax) with support of Taxonomy and Ontologies. 
 
 ## Install
 
