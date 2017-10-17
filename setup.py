@@ -1,3 +1,5 @@
+from __future__ import print_function  # noqa
+from future.utils import raise_from  # noqa
 from distutils.core import setup
 from distutils import spawn
 from setuptools.command.test import test as _test
@@ -7,6 +9,7 @@ from setuptools import Extension
 import subprocess
 import os
 import platform
+
 
 CODE_DIRECTORY = 'posh'
 DOCS_DIRECTORY = 'docs'
@@ -19,9 +22,10 @@ def check_call(args):
     try:
         subprocess.check_call(args)
         return True
-    except Exception, e:
-        print e
+    except Exception as e:
+        print(str(e))
     return False
+
 
 if platform.system() == 'Darwin':
     if check_call(['clang++', '--version']):
@@ -112,7 +116,7 @@ def _lint():
     try:
         retcode = subprocess.call(
             ['flake8', '--max-complexity=10'] + project_python_files)
-    except Exception, e:
+    except Exception as e:
         print(e)
         print("is flake8 installed")
         retcode = -1
@@ -169,6 +173,7 @@ class TestAllCommand(TestCommand):
     def run_tests(self):
         raise SystemExit(_test_all())
 
+
 citar_sources = """./external/citar/src/corpus/BrownCorpusReader.cpp
 ./external/citar/src/corpus/BrownCorpusReaderPrivate.cpp
 ./external/citar/src/cwrap/cwrap.cpp
@@ -216,7 +221,7 @@ class MakeFileCommand(Command):
         try:
             from bottle import template
         except Exception:
-            print "please install bottle (pip install bottle) to run makefile"
+            print("please install bottle (pip install bottle) to run makefile")
             return
         global include_dirs
         filenames = [('posh_cli', './utils/posh_cli.cpp'), ]
@@ -271,7 +276,7 @@ clean:
         f = open("Makefile", "w")
         f.write(out)
         f.close()
-        print "wrote Makefile\n"
+        print("wrote Makefile\n")
     touch("./external/citar/include/citar/config.hh")
 
 
@@ -286,12 +291,12 @@ setup(name='posh',
       package_dir={'posh': 'src/posh'},
       ext_modules=[posh_ext, ],
       install_requires=[
-        "nltk==3.0.4",
-       ],
+          "nltk==3.0.4",
+      ],
       cmdclass={'test': TestAllCommand,
                 'makefile': MakeFileCommand},
       tests_require=[
-        'setuptools==18.1',
-        'pytest==2.5.1',
-        'mock==1.3.0',
-        'flake8==2.1.0'])
+          'setuptools==18.1',
+          'pytest==2.5.1',
+          'mock==1.3.0',
+          'flake8==2.1.0'])
