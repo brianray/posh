@@ -1,4 +1,4 @@
-import core
+import posh
 
 
 class Syntax(object):
@@ -9,5 +9,5 @@ class Syntax(object):
 
     def load(self, name):
         if name == "wordnet":
-            from nltk.corpus import wordnet as wn
-            core.load_corpus('a')
+            from nltk.corpus import wordnet as wn  # noqa
+            posh.core.load_corpus('a')

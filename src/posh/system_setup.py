@@ -1,4 +1,5 @@
-import posh.core as core
+from __future__ import absolute_import  # noqa
+import posh
 import nltk
 from os.path import join, exists, sep
 import glob
@@ -6,7 +7,7 @@ import glob
 
 def train(system, args):
     # citer corpus-train lexicon ngrams
-    core.train(system, args)
+    posh.core.train(system, args)
 
 
 def load_nltk_data_files(nltk_corpus_name, dpath="./data"):

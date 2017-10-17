@@ -1,6 +1,6 @@
-
-import posh.core as core
-from syntax import Syntax
+from __future__ import absolute_import  # noqa
+import posh
+from .syntax import Syntax
 
 
 class Session(object):
@@ -22,9 +22,9 @@ class Session(object):
 
     def addRule(self, rule_handle, rule):
         self.rules[rule_handle] = rule
-        result = core.prefligt_rule(rule)
+        result = posh.core.prefligt_rule(rule)
         if result != 'OK':
             raise Exception(result)
 
     def addTarget(self):
-    	pass
+        pass
