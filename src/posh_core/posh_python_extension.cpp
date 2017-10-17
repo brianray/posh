@@ -37,7 +37,25 @@ static PyMethodDef Methods[] = {
     {NULL, NULL, 0, NULL}
 };
 
-PyMODINIT_FUNC
-initcore(void) {
-  (void) Py_InitModule("core", Methods);
+static struct PyModuleDef cModPyDem =
+{
+    PyModuleDef_HEAD_INIT,
+    "core", /* name of module */
+    "POSH: Parts of Speach Heuristics",          /* module documentation, may be NULL */
+    -1,          /* size of per-interpreter state of the module, or -1 if the module keeps state in global variables. */
+    Methods
+};
+
+
+PyMODINIT_FUNC init(void)
+{
+    return PyModule_Create(&cModPyDem);
 }
+
+
+
+
+
+
+
+
