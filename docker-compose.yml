@@ -10,7 +10,8 @@ services:
       - posh
     volumes:
       - .:/src
-
+    cap_add:
+      - SYS_PTRACE
 networks:
   posh:
     external: true

@@ -36,18 +36,33 @@ python setup.py install
 
 ### For Development
 
-Check out the code:
+Recommended to use [docker_compose](https://docs.docker.com/compose/install/#install-compose)
+
+Then :
 
 ```bash
-git clone --recursive https://github.com/brianray/posh.git
+ $ docker-compose up --build poshdev
 ```
 
-Build the posh_cli:
+Use `docker ps` to identify running process then connect look for example 'posh_poshdev_1'
 
 ```bash
-pip install bottle
+docker attach posh_poshdev_1
+```
+
+Build the command line version
+```bash
 python setup.py makefile
 make
+```
+
+You can ignore any 'Clock skew detected.' detections.
+
+to debug
+```bash
+gdb ./posh_cli
+(gdb) break main
+(gdb) run
 ```
 
 For the 'posh.core' extension:
