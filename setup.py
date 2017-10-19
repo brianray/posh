@@ -263,8 +263,9 @@ posh_cli: \\
 % end
 
 clean:
-\trm posh_cli
-\trm ./external/citar/include/citar/config.hh
+\trm posh_cli  || true
+\trm *.o  || true
+\trm ./external/citar/include/citar/config.hh  || true
 
 '''
         INC = " ".join(["-I{}".format(x) for x in include_dirs])

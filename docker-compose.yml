@@ -1,0 +1,16 @@
+version: '3'
+services:
+  poshdev:
+    build: dev
+    domainname: poshdev
+    hostname: poshdev
+    ports:
+      - "8888:8888"
+    networks:
+      - posh
+    volumes:
+      - .:/src
+
+networks:
+  posh:
+    external: true

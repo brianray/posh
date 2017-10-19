@@ -7,22 +7,12 @@ RUN apt-get update
 RUN apt-get -y install gcc
 RUN apt-get -y install g++
 RUN apt-get -y install make
+RUN apt-get -y install gdb
 Run apt-get -y install vim  # handy
 
-
-RUN mkdir /shared
-WORKDIR /shared
-RUN git clone --branch dev --recursive https://github.com/brianray/posh.git
-WORKDIR posh
-RUN pip install -r requirementsDEV.txt
+ADD requirementsDEV.txt /etc/requirementsDEV.txt 
+RUN pip install -r /etc/requirementsDEV.txt 
 RUN pip install future
-RUN python3 setup.py makefile
-RUN python3 setup.py build 
-RUN make
-
-VOLUME /shared
-WORKDIR /shared/posh/notebooks
-
 
 ## from https://hub.docker.com/r/jupyter/notebook/~/dockerfile/
 
@@ -30,7 +20,10 @@ WORKDIR /shared/posh/notebooks
 RUN mkdir -p -m 700 /root/.jupyter/ && \
     echo "c.NotebookApp.ip = '*'" >> /root/.jupyter/jupyter_notebook_config.py
 
-EXPOSE 8888
+ADD bootstrap.sh /etc/bootstrap.sh
+RUN chown root:root /etc/bootstrap.sh
+RUN chmod 700 /etc/bootstrap.sh
 
-ENTRYPOINT ["tini", "--"]
-CMD ["jupyter", "notebook", "--no-browser", "--allow-root"]
+CMD ["/etc/bootstrap.sh", "-d"]
+
+EXPOSE 8888:8888

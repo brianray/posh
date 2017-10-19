@@ -1,8 +1,11 @@
+from __future__ import print_function  # noqa
 import unittest
 import posh
 from os.path import exists
+import os
 
-download=False
+
+download = True
 
 
 class CleaningMixin(object):
@@ -14,8 +17,9 @@ class CleaningMixin(object):
         for f in self.files:
             try:
                 os.unlink(f)
-            except:
-                print "could not unlink {}".format(f)
+            except Exception as ex:
+                print(str(ex))
+                print("could not unlink {}".format(f))
 
 
 class PoshSetupTests(unittest.TestCase, CleaningMixin):
@@ -31,6 +35,7 @@ class PoshSetupTests(unittest.TestCase, CleaningMixin):
         for f in self.files:
             self.assertTrue(exists(f),
                             "{} should exist".format(f))
+
 
 class PoshTests(unittest.TestCase, CleaningMixin):
 
@@ -56,6 +61,6 @@ class PoshTests(unittest.TestCase, CleaningMixin):
 if __name__ == '__main__':
     try:
         unittest.main(buffer=True)
-    except Exception, e:
+    except Exception as e:
         import pdb
         pdb.set_trace()
