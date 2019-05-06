@@ -19,8 +19,8 @@ def check_call(args):
     try:
         subprocess.check_call(args)
         return True
-    except Exception, e:
-        print e
+    except Exception as e:
+        print(e)
     return False
 
 if platform.system() == 'Darwin':
@@ -112,7 +112,7 @@ def _lint():
     try:
         retcode = subprocess.call(
             ['flake8', '--max-complexity=10'] + project_python_files)
-    except Exception, e:
+    except Exception as e:
         print(e)
         print("is flake8 installed")
         retcode = -1
@@ -128,7 +128,7 @@ def print_success_message(message):
     """
     try:
         import colorama
-        print(colorama.Fore.GREEN + message + colorama.Fore.RESET)
+        print((colorama.Fore.GREEN + message + colorama.Fore.RESET))
     except ImportError:
         print(message)
 
@@ -216,7 +216,7 @@ class MakeFileCommand(Command):
         try:
             from bottle import template
         except Exception:
-            print "please install bottle (pip install bottle) to run makefile"
+            print("please install bottle (pip install bottle) to run makefile")
             return
         global include_dirs
         filenames = [('posh_cli', './utils/posh_cli.cpp'), ]
@@ -271,7 +271,7 @@ clean:
         f = open("Makefile", "w")
         f.write(out)
         f.close()
-        print "wrote Makefile\n"
+        print("wrote Makefile\n")
     touch("./external/citar/include/citar/config.hh")
 
 

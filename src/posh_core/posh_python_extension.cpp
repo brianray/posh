@@ -37,7 +37,28 @@ static PyMethodDef Methods[] = {
     {NULL, NULL, 0, NULL}
 };
 
+#ifdef python2
+
 PyMODINIT_FUNC
 initcore(void) {
   (void) Py_InitModule("core", Methods);
 }
+
+#else
+
+static struct PyModuleDef cModPyDem =
+{
+    PyModuleDef_HEAD_INIT,
+    "core", /* name of module */
+    "POSH Syntax Parser",          /* module documentation, may be NULL */
+    -1,          /* size of per-interpreter state of the module, or -1 if the module keeps state in global variables. */
+    Methods
+};
+
+PyMODINIT_FUNC 
+PyInit_cModPyDem(void)
+{
+    return PyModule_Create(&cModPyDem);
+}
+
+#endif

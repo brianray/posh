@@ -1,5 +1,5 @@
-from session import Session
-import system_setup
+from .session import Session
+from . import system_setup
 
 
 def setup(download=True):

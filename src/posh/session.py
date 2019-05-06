@@ -1,6 +1,6 @@
 
 import posh.core as core
-from syntax import Syntax
+from .syntax import Syntax
 
 
 class Session(object):
